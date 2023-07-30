@@ -1,0 +1,12 @@
+node_modules
+.nyc_output
+.idea
+logs
+coverage
+.DS_Store
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
