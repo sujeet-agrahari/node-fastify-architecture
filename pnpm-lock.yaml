@@ -29,6 +29,9 @@ dependencies:
   fastify:
     specifier: ^4.21.0
     version: 4.21.0
+  fastify-overview:
+    specifier: ^3.3.2
+    version: 3.3.2
   fastify-plugin:
     specifier: ^4.5.1
     version: 4.5.1
@@ -424,6 +427,14 @@ packages:
     resolution: {integrity: sha512-cIusKBIt/R/oI6z/1nyfe2FvGKVTohVRfvkOhvx0nCEW+xf5NoCXjAHcWp93uOUBchzYcsvPlrapAdX1uW+YGg==}
     dev: false
 
+  /fastify-overview@3.3.2:
+    resolution: {integrity: sha512-5JhWXurv1ntutlzbbl4+oiBWQIlD6Jvouso/6PiUhphQ1X12gIqfHKllvwhsgo0gTh4h8/VW8My9kNDXj93DLw==}
+    engines: {node: '>=14'}
+    dependencies:
+      fastify-plugin: 4.5.1
+      object-hash: 2.2.0
+    dev: false
+
   /fastify-plugin@4.5.1:
     resolution: {integrity: sha512-stRHYGeuqpEZTL1Ef0Ovr2ltazUT9g844X5z/zEBFLG8RYlpDiOCIG+ATvYEp+/zmc7sN29mcIMp8gvYplYPIQ==}
     dev: false
@@ -816,6 +827,11 @@ packages:
   /object-assign@4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
+    dev: false
+
+  /object-hash@2.2.0:
+    resolution: {integrity: sha512-gScRMn0bS5fH+IuwyIFgnh9zBdo4DV+6GhygmWM9HyNJSgS0hScp1f5vjtm7oIIOiT9trXrShAkLFSc2IqKNgw==}
+    engines: {node: '>= 6'}
     dev: false
 
   /on-exit-leak-free@2.1.0:

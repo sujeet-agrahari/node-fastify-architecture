@@ -1,4 +1,7 @@
 ---
+HOST: 127.0.01
+PORT: 3000
+NODE_ENV: development
 JWT_SIGN_OPTIONS:
   issuer: My Compny Pvt Ltd
   audience: https://example.in

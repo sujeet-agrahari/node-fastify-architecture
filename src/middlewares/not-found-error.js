@@ -2,6 +2,6 @@ import { NotFoundError } from '../utils/api-errors.js';
 
 
 export async function notFoundHandler (request, _){
-  const errorMessage = `Not Found: ${request.method} on ${request.url}`;
-  throw new NotFoundError(errorMessage);
+  const message = `${request.method} on ${request.url} not found`;
+  throw new NotFoundError(message);
 };

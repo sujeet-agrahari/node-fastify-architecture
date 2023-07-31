@@ -2,24 +2,33 @@ import config from 'config'
 import { buildApp } from './app.js';
 import closeWithGrace from 'close-with-grace';
 
-const opts = {
+
+const port = config.get('PORT');
+const host = config.get('HOST');
+
+const serverOptions = {
   logger: {
     level: 'info',
-  }
+  },
+  genReqId: () => crypto.randomUUID()
 }
 
 // We want to use pino-pretty only if there is a human watching this,
 if (process.stdout.isTTY) {
-  opts.logger.transport = { target: 'pino-pretty' }
+  serverOptions.logger.transport = { target: 'pino-pretty' }
 }
 
 
-const port = config.get('PORT') || '3000';
-const host = config.get('HOST') || '127.0.0.1'
 
-const app = await buildApp(opts);
+const app = await buildApp(serverOptions);
 
-app.ready(() => app.log.info(`\n ${app.printRoutes()}`))
+
+app.ready(async () => { 
+    const appStructure = await app.overview() // 🦄 Here is the magic!
+    app.log.info(`\n${JSON.stringify(appStructure, null, 2)}`)
+    app.log.info(`\n ${app.printRoutes()}`)
+  }
+)
 
 await app.listen({ port, host });
 

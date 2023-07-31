@@ -7,19 +7,17 @@ export async function errorHandler(error, request, reply) {
   if (error instanceof APIError) {
     reply.code(error.status);
     return {
-      error: {
-        code: error.status,
+        statusCode: error.status,
+        error: error.error,
         message: error.message,
-      },
     };
   }
 
   // connect all errors
   reply.code(500);
   return {
-    error: {
-      code: 500,
-      message: 'Something went wrong!',
-    },
-  };
+        statusCode: 500,
+        error: 'Internal Server Error!',
+        message: error.message,
+    };
 };
