@@ -13,12 +13,11 @@ import fastifyOverveiw from 'fastify-overview';
 export async function buildApp (opts = {}) {
   const app = Fastify(opts)
 
-  await app.register(fastifyOverveiw, { addSource: true});
+  // await app.register(fastifyOverveiw, { addSource: true});
 
   // auto load modules
   app.register(autoload, {
     dir: join(import.meta.url, 'modules'),
-    encapsulate: false,
     maxDepth: 1,
     dirNameRoutePrefix: false,
     // load only main .module.js files

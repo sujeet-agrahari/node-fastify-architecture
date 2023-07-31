@@ -24,8 +24,8 @@ const app = await buildApp(serverOptions);
 
 
 app.ready(async () => { 
-    const appStructure = await app.overview() // 🦄 Here is the magic!
-    app.log.info(`\n${JSON.stringify(appStructure, null, 2)}`)
+    // const appStructure = await app.overview() // 🦄 Here is the magic!
+    // app.log.info(`\n${JSON.stringify(appStructure, null, 2)}`)
     app.log.info(`\n ${app.printRoutes()}`)
   }
 )
