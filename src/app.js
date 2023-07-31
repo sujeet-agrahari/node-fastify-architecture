@@ -13,7 +13,7 @@ import fastifyOverveiw from 'fastify-overview';
 export async function buildApp (opts = {}) {
   const app = Fastify(opts)
 
-  // await app.register(fastifyOverveiw, { addSource: true});
+  await app.register(fastifyOverveiw, { addSource: true });
 
   // auto load modules
   app.register(autoload, {

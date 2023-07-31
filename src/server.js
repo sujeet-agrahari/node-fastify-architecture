@@ -1,6 +1,7 @@
 import config from 'config'
 import { buildApp } from './app.js';
 import closeWithGrace from 'close-with-grace';
+import fastifyOverveiwUI from 'fastify-overview-ui';
 
 
 const port = config.get('PORT');
@@ -22,13 +23,11 @@ if (process.stdout.isTTY) {
 
 const app = await buildApp(serverOptions);
 
+app.register(fastifyOverveiwUI)
 
-app.ready(async () => { 
-    // const appStructure = await app.overview() // 🦄 Here is the magic!
-    // app.log.info(`\n${JSON.stringify(appStructure, null, 2)}`)
-    app.log.info(`\n ${app.printRoutes()}`)
-  }
-)
+app.addHook('onReady', async () => {
+  app.log.info(`\n ${app.printRoutes()}`)
+})
 
 await app.listen({ port, host });
 

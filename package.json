@@ -21,6 +21,7 @@
     "dotenv": "^16.3.1",
     "fastify": "^4.21.0",
     "fastify-overview": "^3.3.2",
+    "fastify-overview-ui": "^2.2.1",
     "fastify-plugin": "^4.5.1",
     "js-yaml": "^4.1.0",
     "jsonwebtoken": "^9.0.1",
