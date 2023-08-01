@@ -2,8 +2,8 @@ import config from 'config';
 import closeWithGrace from 'close-with-grace';
 import buildApp from './app.js';
 import * as HttpError from './utils/http-errors.js';
-import { errorHandler } from './middlewares/error-handler.js';
-import { notFoundHandler } from './middlewares/not-found-error.js';
+import errorHandler from './middlewares/error-handler.js';
+import notFoundHandler from './middlewares/not-found-error.js';
 
 const port = config.get('PORT');
 const host = config.get('HOST');
@@ -18,7 +18,7 @@ const serverOptions = {
   config,
   HttpError,
   errorHandler,
-  notFoundHandler
+  notFoundHandler,
 };
 
 // We want to use pino-pretty only if there is a human watching this,

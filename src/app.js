@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import Fastify from 'fastify';
 import autoload from '@fastify/autoload';
 import { join } from 'desm';
@@ -20,7 +21,7 @@ async function registerPlugins(app, opts) {
   // Loads all plugins defined in the 'plugins' directory
   await app.register(autoload, {
     dir: join(import.meta.url, 'plugins'),
-    options: Object.assign({}, opts),
+    options: { ...opts },
   });
 }
 
@@ -37,7 +38,7 @@ async function registerModules(app, opts) {
     maxDepth: 1,
     dirNameRoutePrefix: false,
     matchFilter: (path) => path.endsWith('.module.js'),
-    options: Object.assign({ prefix: app.config.API_PREFIX }, opts),
+    options: { prefix: app.config.API_PREFIX, ...opts },
   });
 }
 

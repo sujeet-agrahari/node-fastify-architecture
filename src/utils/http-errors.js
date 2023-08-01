@@ -25,7 +25,7 @@ class BadRequestError extends HttpError {
    * @param {string} [message='Bad Request'] - The error message.
    */
   constructor(message) {
-    super(400,'Bad Request', message);
+    super(400, 'Bad Request', message);
   }
 }
 
@@ -38,7 +38,7 @@ class AccessDeniedError extends HttpError {
    * @param {string} [message='Access Denied'] - The error message.
    */
   constructor(message) {
-    super(401,'Access denied', message);
+    super(401, 'Access denied', message);
   }
 }
 
@@ -51,7 +51,7 @@ class UnauthorizedError extends HttpError {
    * @param {string} [message='Unauthorized'] - The error message.
    */
   constructor(message) {
-    super(403,'Unauthorized', message);
+    super(403, 'Unauthorized', message);
   }
 }
 
@@ -64,7 +64,7 @@ class ForbiddenError extends HttpError {
    * @param {string} [message='Forbidden'] - The error message.
    */
   constructor(message) {
-    super(403,'Forbidden', message);
+    super(403, 'Forbidden', message);
   }
 }
 
@@ -77,7 +77,7 @@ class NotFoundError extends HttpError {
    * @param {string} [message='Not Found'] - The error message.
    */
   constructor(message) {
-    super(404,'Not Found', message);
+    super(404, 'Not Found', message);
   }
 }
 
@@ -90,7 +90,7 @@ class MethodNotAllowedError extends HttpError {
    * @param {string} [message='Method Not Allowed'] - The error message.
    */
   constructor(message) {
-    super(405,'Method Not Allowed', message);
+    super(405, 'Method Not Allowed', message);
   }
 }
 
@@ -103,7 +103,7 @@ class ConflictError extends HttpError {
    * @param {string} [message='Conflict'] - The error message.
    */
   constructor(message) {
-    super(408,'Conflict', message);
+    super(408, 'Conflict', message);
   }
 }
 
@@ -116,7 +116,7 @@ class UnSupportedMediaTypeError extends HttpError {
    * @param {string} [message='Unsupported Media Type'] - The error message.
    */
   constructor(message) {
-    super(415,'Unsupported Media Type', message);
+    super(415, 'Unsupported Media Type', message);
   }
 }
 
@@ -129,7 +129,7 @@ class UnProcessableEntityError extends HttpError {
    * @param {string} [message='Unprocessable Entity'] - The error message.
    */
   constructor(message) {
-    super(422,'Unprocessable Entity', message);
+    super(422, 'Unprocessable Entity', message);
   }
 }
 
@@ -142,7 +142,7 @@ class InternalServerError extends HttpError {
    * @param {string} [message='Inter Server Error'] - The error message.
    */
   constructor(message) {
-    super(500,'Internal Server Error', message);
+    super(500, 'Internal Server Error', message);
   }
 }
 

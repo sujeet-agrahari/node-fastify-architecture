@@ -3,8 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['airbnb-base', 'eslint-config-prettier'],
-  plugins: ['eslint-config-prettier'],
+  extends: 'airbnb-base',
   overrides: [
     {
       env: {
@@ -22,20 +21,12 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
+  plugins: [
+    'import', // Add the 'import' plugin to enable import-related rules
+  ],
   rules: {
-    'prettier/prettier': [
-      'error',
-      {
-        singleQuote: true,
-        trailingComma: 'es5',
-        bracketSpacing: true,
-        jsxBracketSameLine: false,
-        printWidth: 80,
-        tabWidth: 2,
-      },
-    ],
-    'import/extensions': [
-      { js: 'always'}
-    ]
+    'import/extensions': ['error', 'ignorePackages', {
+      js: 'always',
+    }],
   },
 };
