@@ -1,10 +1,10 @@
-import { APIError } from '../utils/api-errors.js';
+import { HttpError } from '../utils/http-errors.js';
 
 export async function errorHandler(error, request, reply) {
   request.log.error({ error });
 
   // catch HTTP errors
-  if (error instanceof APIError) {
+  if (error instanceof HttpError) {
     reply.code(error.status);
     return {
         statusCode: error.status,

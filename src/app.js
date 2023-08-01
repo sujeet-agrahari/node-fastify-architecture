@@ -1,33 +1,48 @@
-
 import Fastify from 'fastify';
-
 import autoload from '@fastify/autoload';
-
 import { join } from 'desm';
-import { errorHandler } from './middlewares/error-handler.js';
-import { notFoundHandler } from './middlewares/not-found-error.js';
+import fastifyOverview from 'fastify-overview';
 
-import fastifyOverveiw from 'fastify-overview';
+export default async function buildApp(opts = {}) {
+  const app = Fastify(opts.fastifyOptions);
+  await registerPlugins(app, opts);
+  await registerDecorators(app, opts);
+  await registerModules(app, opts);
+  await registerErrorHandlers(app, opts);
 
+  return app;
+}
 
-export async function buildApp (opts = {}) {
-  const app = Fastify(opts)
+async function registerDecorators(app, opts) {
+  // Register global utilities
+  app.decorate('config', opts.config);
+  app.decorate('HttpError', opts.HttpError);
+}
 
-  await app.register(fastifyOverveiw, { addSource: true });
+async function registerPlugins(app, opts) {
+  // Register fastifyOverview as the first plugin to be registered
+  await app.register(fastifyOverview, { addSource: true });
 
-  // auto load modules
-  app.register(autoload, {
+  // Loads all plugins defined in the 'plugins' directory
+  await app.register(autoload, {
+    dir: join(import.meta.url, 'plugins'),
+    options: Object.assign({}, opts),
+  });
+}
+
+async function registerModules(app, opts) {
+  // Auto-load modules
+  await app.register(autoload, {
     dir: join(import.meta.url, 'modules'),
     maxDepth: 1,
     dirNameRoutePrefix: false,
-    // load only main .module.js files
     matchFilter: (path) => path.endsWith('.module.js'),
-    options: { prefix: '/api/v1'},
-  })
+    options: Object.assign({ prefix: '/api/v1' }, opts),
+  });
+}
 
-  app.setErrorHandler(errorHandler)
-
-  app.setNotFoundHandler(notFoundHandler)  
-
-  return app
+async function registerErrorHandlers(app, opts) {
+  // Register error handlers
+  await app.setErrorHandler(opts.errorHandler);
+  await app.setNotFoundHandler(opts.notFoundHandler);
 }

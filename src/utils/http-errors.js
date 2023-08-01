@@ -2,7 +2,7 @@
 /**
  *
  */
-class APIError extends Error {
+class HttpError extends Error {
   /**
    * Create a new HTTP error.
    * @param {number} status - The HTTP status code of the error.
@@ -19,7 +19,7 @@ class APIError extends Error {
 /**
  *
  */
-class BadRequestError extends APIError {
+class BadRequestError extends HttpError {
   /**
    * Create a new `BadRequest` error.
    * @param {string} [message='Bad Request'] - The error message.
@@ -32,7 +32,7 @@ class BadRequestError extends APIError {
 /**
  *
  */
-class AccessDeniedError extends APIError {
+class AccessDeniedError extends HttpError {
   /**
    * Create a new `AccessDenied` error.
    * @param {string} [message='Access Denied'] - The error message.
@@ -45,7 +45,7 @@ class AccessDeniedError extends APIError {
 /**
  *
  */
-class UnauthorizedError extends APIError {
+class UnauthorizedError extends HttpError {
   /**
    * Create a new `Unauthorized` error.
    * @param {string} [message='Unauthorized'] - The error message.
@@ -58,7 +58,7 @@ class UnauthorizedError extends APIError {
 /**
  *
  */
-class ForbiddenError extends APIError {
+class ForbiddenError extends HttpError {
   /**
    * Create a new `Forbidden` error.
    * @param {string} [message='Forbidden'] - The error message.
@@ -71,7 +71,7 @@ class ForbiddenError extends APIError {
 /**
  *
  */
-class NotFoundError extends APIError {
+class NotFoundError extends HttpError {
   /**
    * Create a new `NotFound` error.
    * @param {string} [message='Not Found'] - The error message.
@@ -84,7 +84,7 @@ class NotFoundError extends APIError {
 /**
  *
  */
-class MethodNotAllowedError extends APIError {
+class MethodNotAllowedError extends HttpError {
   /**
    * Create a new `MethodNotAllowed` error.
    * @param {string} [message='Method Not Allowed'] - The error message.
@@ -97,7 +97,7 @@ class MethodNotAllowedError extends APIError {
 /**
  *
  */
-class ConflictError extends APIError {
+class ConflictError extends HttpError {
   /**
    * Create a new `Conflict` error.
    * @param {string} [message='Conflict'] - The error message.
@@ -110,7 +110,7 @@ class ConflictError extends APIError {
 /**
  *
  */
-class UnSupportedMediaTypeError extends APIError {
+class UnSupportedMediaTypeError extends HttpError {
   /**
    * Create a new `UnsupportedMediaType` error.
    * @param {string} [message='Unsupported Media Type'] - The error message.
@@ -123,7 +123,7 @@ class UnSupportedMediaTypeError extends APIError {
 /**
  *
  */
-class UnProcessableEntityError extends APIError {
+class UnProcessableEntityError extends HttpError {
   /**
    * Create a new `UnProcessableEntity` error.
    * @param {string} [message='Unprocessable Entity'] - The error message.
@@ -136,7 +136,7 @@ class UnProcessableEntityError extends APIError {
 /**
  *
  */
-class InternalServerError extends APIError {
+class InternalServerError extends HttpError {
   /**
    * Create a new `InternalServer` error.
    * @param {string} [message='Inter Server Error'] - The error message.
@@ -147,7 +147,7 @@ class InternalServerError extends APIError {
 }
 
 export {
-  APIError,
+  HttpError,
   ConflictError,
   ForbiddenError,
   NotFoundError,

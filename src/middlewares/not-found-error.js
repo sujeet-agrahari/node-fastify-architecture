@@ -1,4 +1,4 @@
-import { NotFoundError } from '../utils/api-errors.js';
+import { NotFoundError } from '../utils/http-errors.js';
 
 
 export async function notFoundHandler (request, _){

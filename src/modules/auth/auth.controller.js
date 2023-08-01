@@ -1,11 +1,10 @@
-
 import AuthService from './auth.service.js';
 
 const AuthController = {
-  login: async (httpRequest) => {
-    const loginData = await AuthService.doLogin(httpRequest.body);
+  login: async function (request, _) {
+    const loginData = await AuthService.doLogin(request.body);
     return loginData;
-  },
+  }
 };
 
 export default AuthController;
