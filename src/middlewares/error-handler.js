@@ -1,10 +1,8 @@
-import { HttpError } from '../utils/http-errors.js';
-
 export async function errorHandler(error, request, reply) {
   request.log.error({ error });
 
   // catch HTTP errors
-  if (error instanceof HttpError) {
+  if (error instanceof this.HttpError.HttpError) {
     reply.code(error.status);
     return {
         statusCode: error.status,
