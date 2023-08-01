@@ -13,12 +13,6 @@ export default async function buildApp(opts = {}) {
   return app;
 }
 
-async function registerDecorators(app, opts) {
-  // Register global utilities
-  app.decorate('config', opts.config);
-  app.decorate('HttpError', opts.HttpError);
-}
-
 async function registerPlugins(app, opts) {
   // Register fastifyOverview as the first plugin to be registered
   await app.register(fastifyOverview, { addSource: true });
@@ -30,6 +24,12 @@ async function registerPlugins(app, opts) {
   });
 }
 
+async function registerDecorators(app, opts) {
+  // Register global utilities
+  app.decorate('config', opts.config);
+  app.decorate('HttpError', opts.HttpError);
+}
+
 async function registerModules(app, opts) {
   // Auto-load modules
   await app.register(autoload, {
@@ -37,7 +37,7 @@ async function registerModules(app, opts) {
     maxDepth: 1,
     dirNameRoutePrefix: false,
     matchFilter: (path) => path.endsWith('.module.js'),
-    options: Object.assign({ prefix: '/api/v1' }, opts),
+    options: Object.assign({ prefix: app.config.API_PREFIX }, opts),
   });
 }
 
