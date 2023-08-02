@@ -1,12 +1,15 @@
 {
   "name": "node-fastify-architecture",
   "version": "1.0.0",
+  "engines": {
+    "node": "20.x"
+  },
   "description": "",
   "main": "./src/server.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --require=dotenv/config -L src/server.js"
+    "start": "nodemon --require=dotenv/config  src/server.js"
   },
   "keywords": [],
   "author": "",

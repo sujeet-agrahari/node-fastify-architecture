@@ -7,3 +7,5 @@ JWT_SIGN_OPTIONS:
   audience: https://example.in
   expiresIn: 15d
 API_PREFIX: api/v1
+
+DB_CONFIG:
