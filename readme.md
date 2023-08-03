@@ -96,6 +96,7 @@ The application contains below routes:
     │   └── * (HEAD, GET)
     ├── json-overview-ui (GET, HEAD)
     └── api/v1/auth/login (POST)
+    └── health
 ```
 
 `your-host:port/fastify-overview-ui/`: gives you a nice UI which visualizes everything your has application has like plugins, hooks, decorators etc.
