@@ -1,8 +1,6 @@
-import HealthService from './health.service.js';
-
 const HealthController = {
   async getHealthStatus() {
-    const healthStatus = await HealthService.getHealthStatus(this);
+    const healthStatus = await this.healthService.getHealthStatus(this);
     return healthStatus;
   },
 };

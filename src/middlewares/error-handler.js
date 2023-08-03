@@ -11,7 +11,7 @@ export default async function errorHandler(error, request, reply) {
     };
   }
 
-  // connect all errors
+  // catch other errors
   reply.code(500);
   return {
     statusCode: 500,
