@@ -4,6 +4,10 @@ A boilerplate/starter project for quickly building RESTful APIs using Node.js, F
 
 This repository contains a Node.js Fastify application that follows a modular architecture. Each business entity is wrapped inside a single module, including routes, controllers, services, and other related components.
 
+> ⚡️ The project is setup to work with node v20, which is gonna be next LTS from 24th October 2023.
+> Node v20 includes native test runner. The project is setup to use the same and doesn't depend on external libraries like jest, mocha, ava etc. for tests.
+> Node v20 also allows to use `await` outside `async` and the project also uses this feature
+
 ## The project
 
 The project is organized with a modular architecture to promote separation of concerns and code reusability. The architecture is designed to keep services separate from controllers, enabling better data processing and more maintainable code.
@@ -86,7 +90,8 @@ The decision to separate services from controllers is motivated by several facto
 3. install pnpm `npm i -g pnpm`
 4. install dependencies `pnpm install`
 5. setup Prism `pnpm dlx prisma generate`
-6. run the app `pnpm start`
+6. run the app `pnpm start`; _it will run the app in development_
+7. run the unit tests `pnpm test` _it uses node.js v20 native test runner_
 
 The application contains below routes:
 

@@ -15,4 +15,4 @@ export default fp(async (app, opts) => {
     await app.db.$disconnect();
     app.log.info('Database connection closed!');
   });
-});
+}, { name: 'prisma' });

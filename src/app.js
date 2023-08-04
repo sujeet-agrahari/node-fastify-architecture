@@ -6,10 +6,10 @@ import fastifyOverview from 'fastify-overview';
 
 export default async function buildApp(opts = {}) {
   const app = Fastify(opts.fastifyOptions);
+  await registerErrorHandlers(app, opts);
   await registerPlugins(app, opts);
   await registerDecorators(app, opts);
   await registerModules(app, opts);
-  await registerErrorHandlers(app, opts);
 
   return app;
 }
