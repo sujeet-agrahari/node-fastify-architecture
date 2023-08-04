@@ -7,7 +7,7 @@ import notFoundHandler from './middlewares/not-found-error.js';
 
 const port = config.get('PORT');
 const host = config.get('HOST');
-const { isTTY } = process.env;
+const { isTTY, NODE_ENV } = process.env;
 
 const serverOptions = {
   fastifyOptions: {
@@ -24,7 +24,7 @@ const serverOptions = {
 };
 
 // We want to use pino-pretty only if there is a human watching this,
-if (isTTY) {
+if (isTTY || NODE_ENV === 'development') {
   serverOptions.fastifyOptions.logger.transport = { target: 'pino-pretty' };
 }
 

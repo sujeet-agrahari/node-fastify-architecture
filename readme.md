@@ -92,13 +92,14 @@ The application contains below routes:
 
 ```
 └── /
-    ├── fastify-overview-ui/
+    ├── fastify-overview-ui/ (don't forget to add the slash)
     │   └── * (HEAD, GET)
     ├── json-overview-ui (GET, HEAD)
     └── api/v1/auth/login (POST)
+    └── health
 ```
 
-`your-host:port/fastify-overview-ui`: gives you a nice UI which visualizes everything your has application has like plugins, hooks, decorators etc.
+`your-host:port/fastify-overview-ui/`: gives you a nice UI which visualizes everything your has application has like plugins, hooks, decorators etc.
 
 `your-host:port/json-overview-ui`: gives json version of everything your has application has like plugins, hooks, decorators etc.
 
