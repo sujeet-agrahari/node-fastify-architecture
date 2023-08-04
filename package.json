@@ -8,8 +8,9 @@
   "main": "./src/server.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --require=dotenv/config  src/server.js"
+    "test": "NODE_ENV=test node --test  --require=dotenv/config test/",
+    "start": "NODE_ENV=development nodemon --require=dotenv/config  src/server.js",
+    "start:prod": "NODE_ENV=production node --require=dotenv/config src/server.js"
   },
   "keywords": [],
   "author": "",
