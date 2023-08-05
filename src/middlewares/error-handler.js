@@ -6,7 +6,7 @@ export default async function errorHandler(error, request, reply) {
     reply.code(error.status);
     return {
       statusCode: error.status,
-      code: error.error,
+      error: error.error,
       message: error.message,
     };
   }
