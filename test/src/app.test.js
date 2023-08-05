@@ -13,7 +13,7 @@ const pluginDir = 'src/plugins';
 const port = config.get('PORT');
 const host = config.get('HOST');
 
-describe('buildApp', () => {
+describe('buildApp', async () => {
   const serverOptions = {
     fastifyOptions: {
       logger: {
@@ -29,7 +29,7 @@ describe('buildApp', () => {
   };
 
   test('built app have all the passed decorators', async () => {
-    // Setup & Act
+    // Arrange & Act
     const app = await buildApp(serverOptions);
 
     // Assert
@@ -39,7 +39,7 @@ describe('buildApp', () => {
   });
 
   test('built app have all the plugins', async () => {
-    // Setup & Act
+    // Arrange & Act
     const app = await buildApp(serverOptions);
     const theFirstPlugin = 'fastify-overview';
 
@@ -56,7 +56,7 @@ describe('buildApp', () => {
   });
 
   test('built app uses passed notFoundHandler', async () => {
-    // Setup
+    // Arrange
     const app = await buildApp(serverOptions);
 
     // Act
@@ -79,7 +79,7 @@ describe('buildApp', () => {
   });
 
   test('built app uses passed errorHandler', async () => {
-    // Setup
+    // Arrange
     const app = await buildApp(serverOptions);
     const errorMsg = 'Something bad happened!';
     mock.method(HealthService, 'getHealthStatus')
