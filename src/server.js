@@ -38,7 +38,7 @@ const closeListeners = closeWithGrace(
   { delay: 500 },
   async ({ signal, err }) => {
     if (err) {
-      app.log.error({ err }, 'server closing due to error');
+      app.log.error({ err }, 'Server closing due to error');
     }
     app.log.info(`Got ${signal}! Shutting down gracefully`);
     await app.close();

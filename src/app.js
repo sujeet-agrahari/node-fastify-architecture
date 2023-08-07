@@ -7,11 +7,23 @@ import fastifyOverview from 'fastify-overview';
 export default async function buildApp(opts = {}) {
   const app = Fastify(opts.fastifyOptions);
   await registerErrorHandlers(app, opts);
-  await registerPlugins(app, opts);
   await registerDecorators(app, opts);
+  await registerPlugins(app, opts);
   await registerModules(app, opts);
 
   return app;
+}
+
+async function registerErrorHandlers(app, opts) {
+  // Register error handlers
+  await app.setErrorHandler(opts.errorHandler);
+  await app.setNotFoundHandler(opts.notFoundHandler);
+}
+
+async function registerDecorators(app, opts) {
+  // Register global utilities
+  app.decorate('config', opts.config);
+  app.decorate('HttpError', opts.HttpError);
 }
 
 async function registerPlugins(app, opts) {
@@ -25,12 +37,6 @@ async function registerPlugins(app, opts) {
   });
 }
 
-async function registerDecorators(app, opts) {
-  // Register global utilities
-  app.decorate('config', opts.config);
-  app.decorate('HttpError', opts.HttpError);
-}
-
 async function registerModules(app, opts) {
   // Auto-load modules
   await app.register(autoload, {
@@ -40,10 +46,4 @@ async function registerModules(app, opts) {
     matchFilter: (path) => path.endsWith('.module.js'),
     options: { prefix: app.config.API_PREFIX, ...opts },
   });
-}
-
-async function registerErrorHandlers(app, opts) {
-  // Register error handlers
-  await app.setErrorHandler(opts.errorHandler);
-  await app.setNotFoundHandler(opts.notFoundHandler);
 }

@@ -20,6 +20,7 @@ export default async function errorHandler(error, request, reply) {
       message: error.message,
     };
   }
+
   // catch other errors
   reply.code(500);
   return {

@@ -1,7 +1,4 @@
 /* eslint-disable max-classes-per-file */
-/**
- *
- */
 class HttpError extends Error {
   /**
    * Create a new HTTP error.
@@ -15,10 +12,6 @@ class HttpError extends Error {
     this.message = message;
   }
 }
-
-/**
- *
- */
 class BadRequestError extends HttpError {
   /**
    * Create a new `BadRequest` error.
@@ -28,10 +21,6 @@ class BadRequestError extends HttpError {
     super(400, 'Bad Request', message);
   }
 }
-
-/**
- *
- */
 class AccessDeniedError extends HttpError {
   /**
    * Create a new `AccessDenied` error.
@@ -41,10 +30,6 @@ class AccessDeniedError extends HttpError {
     super(401, 'Access denied', message);
   }
 }
-
-/**
- *
- */
 class UnauthorizedError extends HttpError {
   /**
    * Create a new `Unauthorized` error.
@@ -54,10 +39,6 @@ class UnauthorizedError extends HttpError {
     super(403, 'Unauthorized', message);
   }
 }
-
-/**
- *
- */
 class ForbiddenError extends HttpError {
   /**
    * Create a new `Forbidden` error.
@@ -67,10 +48,6 @@ class ForbiddenError extends HttpError {
     super(403, 'Forbidden', message);
   }
 }
-
-/**
- *
- */
 class NotFoundError extends HttpError {
   /**
    * Create a new `NotFound` error.
@@ -80,10 +57,6 @@ class NotFoundError extends HttpError {
     super(404, 'Not Found', message);
   }
 }
-
-/**
- *
- */
 class MethodNotAllowedError extends HttpError {
   /**
    * Create a new `MethodNotAllowed` error.
@@ -93,10 +66,6 @@ class MethodNotAllowedError extends HttpError {
     super(405, 'Method Not Allowed', message);
   }
 }
-
-/**
- *
- */
 class ConflictError extends HttpError {
   /**
    * Create a new `Conflict` error.
@@ -106,10 +75,6 @@ class ConflictError extends HttpError {
     super(408, 'Conflict', message);
   }
 }
-
-/**
- *
- */
 class UnSupportedMediaTypeError extends HttpError {
   /**
    * Create a new `UnsupportedMediaType` error.
@@ -119,10 +84,6 @@ class UnSupportedMediaTypeError extends HttpError {
     super(415, 'Unsupported Media Type', message);
   }
 }
-
-/**
- *
- */
 class UnProcessableEntityError extends HttpError {
   /**
    * Create a new `UnProcessableEntity` error.
@@ -132,10 +93,6 @@ class UnProcessableEntityError extends HttpError {
     super(422, 'Unprocessable Entity', message);
   }
 }
-
-/**
- *
- */
 class InternalServerError extends HttpError {
   /**
    * Create a new `InternalServer` error.
