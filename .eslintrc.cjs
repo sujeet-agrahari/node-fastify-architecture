@@ -28,5 +28,6 @@ module.exports = {
     'import/extensions': ['error', 'ignorePackages', {
       js: 'always',
     }],
+    'prefer-arrow-callback': 'off',
   },
 };
