@@ -3,8 +3,6 @@ import assert from 'node:assert';
 import config from 'config';
 import buildApp from '../../src/app.js';
 import * as HttpError from '../../src/utils/http-errors.js';
-import notFoundHandler from '../../src/middlewares/not-found-error.js';
-import errorHandler from '../../src/middlewares/error-handler.js';
 
 describe('server', async () => {
   const serverOptions = {
@@ -16,8 +14,6 @@ describe('server', async () => {
     },
     config,
     HttpError,
-    errorHandler,
-    notFoundHandler,
     dbConfig: config.get('DB_CONFIG'),
   };
 
@@ -40,7 +36,5 @@ describe('server', async () => {
     assert.strictEqual('app' in parsedData, true);
     assert.strictEqual(parsedData.database.status, 'up');
     assert.strictEqual(parsedData.app.status, 'up');
-
-    await app.close();
   });
 });

@@ -21,8 +21,6 @@ root
     ├── app.js
     ├── plugins/
     │   ├── [Plugin files]
-    ├── middlewares/
-    │   ├── [Middleware files]
     ├── utils/
     │   ├── [Utility files]
     ├── modules/
