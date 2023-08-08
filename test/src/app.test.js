@@ -5,13 +5,9 @@ import path from 'node:path';
 import config from 'config';
 import buildApp from '../../src/app.js';
 import * as HttpError from '../../src/utils/http-errors.js';
-import notFoundHandler from '../../src/middlewares/not-found-error.js';
-import errorHandler from '../../src/middlewares/error-handler.js';
 import HealthService from '../../src/modules/health/health.service.js';
 
 const pluginDir = 'src/plugins';
-const port = config.get('PORT');
-const host = config.get('HOST');
 
 describe('buildApp', async () => {
   const serverOptions = {
@@ -23,12 +19,10 @@ describe('buildApp', async () => {
     },
     config,
     HttpError,
-    errorHandler,
-    notFoundHandler,
     dbConfig: config.get('DB_CONFIG'),
   };
 
-  test('built app have all the passed decorators', async () => {
+  test('built app has all the passed decorators', async () => {
     // Arrange & Act
     const app = await buildApp(serverOptions);
 
@@ -38,10 +32,9 @@ describe('buildApp', async () => {
     assert.strictEqual(app.hasDecorator('db'), true);
   });
 
-  test('built app have all the plugins', async () => {
+  test('built app has all the plugins', async () => {
     // Arrange & Act
     const app = await buildApp(serverOptions);
-    const theFirstPlugin = 'fastify-overview';
 
     const plugins = await readdir(pluginDir);
     const pluginNamesWithoutExtension = plugins.map((file) => {
@@ -50,7 +43,7 @@ describe('buildApp', async () => {
     });
 
     // Assert
-    [...pluginNamesWithoutExtension, theFirstPlugin].forEach((pluginName) => {
+    pluginNamesWithoutExtension.forEach((pluginName) => {
       assert.strictEqual(app.hasPlugin(pluginName), true);
     });
   });
@@ -86,10 +79,9 @@ describe('buildApp', async () => {
       .mock.mockImplementationOnce(
         () => Promise.reject(new HttpError.InternalServerError(errorMsg)),
       );
-    await app.listen({ port, host });
 
     // Act
-    const errorRes = await fetch(`http://${host}:${port}/health`);
+    const errorRes = await app.inject({ method: 'GET', url: '/health' });
     // Parse the JSON response data
     const parsedData = await errorRes.json();
 
@@ -102,7 +94,5 @@ describe('buildApp', async () => {
     assert.strictEqual(parsedData.statusCode, 500);
     assert.strictEqual(parsedData.error, 'Internal Server Error');
     assert.strictEqual(parsedData.message, errorMsg);
-
-    await app.close();
   });
 });

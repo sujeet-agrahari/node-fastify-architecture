@@ -1,7 +1,13 @@
 export default async function AuthRoutes(authModule) {
-  authModule.post(
-    '/login',
-    authModule.authSchema.loginSchema,
-    authModule.authController.login,
-  );
+  authModule.route({
+    method: 'POST',
+    url: '/login',
+    schema: {
+      body: authModule.getSchema('schema:auth:login'),
+      response: {
+        201: authModule.getSchema('schema:auth:loginRes'),
+      },
+    },
+    handler: authModule.authController.login,
+  });
 }

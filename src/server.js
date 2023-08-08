@@ -2,8 +2,6 @@ import config from 'config';
 import closeWithGrace from 'close-with-grace';
 import buildApp from './app.js';
 import * as HttpError from './utils/http-errors.js';
-import errorHandler from './middlewares/error-handler.js';
-import notFoundHandler from './middlewares/not-found-error.js';
 
 const port = config.get('PORT');
 const host = config.get('HOST');
@@ -18,8 +16,6 @@ const serverOptions = {
   },
   config,
   HttpError,
-  errorHandler,
-  notFoundHandler,
   dbConfig: config.get('DB_CONFIG'),
 };
 
@@ -38,7 +34,7 @@ const closeListeners = closeWithGrace(
   { delay: 500 },
   async ({ signal, err }) => {
     if (err) {
-      app.log.error({ err }, 'server closing due to error');
+      app.log.error({ err }, 'Server closing due to error');
     }
     app.log.info(`Got ${signal}! Shutting down gracefully`);
     await app.close();

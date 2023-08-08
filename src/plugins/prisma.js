@@ -11,7 +11,7 @@ export default fp(async (app, opts) => {
   app.decorate('db', prisma);
 
   // eslint-disable-next-line no-shadow
-  app.addHook('onClose', async (app) => {
+  app.addHook('onClose', async function closeDbConnection(app, _opts) {
     await app.db.$disconnect();
     app.log.info('Database connection closed!');
   });
