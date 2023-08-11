@@ -374,6 +374,13 @@ app.ready().then(() => {
 
 _The context of child when wrapped with `fp` gets merged into the parent._
 
+# Questions
+
+*Feel free to add yours!*
+
+- When to prefer `fastify.decorateRequest()` over `fastify.decorate()`? https://github.com/fastify/help/issues/918
+- Should we install the dependencies which fastify already has like pino, ajv If we want to customize default behaviour? https://github.com/fastify/help/issues/917
+- Clarification on the Impact of Awaiting a Plugin/Decorator https://github.com/fastify/help/issues/919  
 # Learning Materials
 
 https://www.youtube.com/watch?v=gltzZjKYK1I
