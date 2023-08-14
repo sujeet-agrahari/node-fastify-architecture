@@ -43,6 +43,7 @@ const closeListeners = closeWithGrace(
 
 app.addHook('onClose', async () => {
   await closeListeners.uninstall();
+  app.log.info('Signal listeners removed!');
 });
 
 await app.listen({ port, host });

@@ -1,7 +1,7 @@
 import fp from 'fastify-plugin';
 import { PrismaClient } from '@prisma/client';
 
-export default fp(async (app, opts) => {
+export default fp(async function prismaClientPlugin(app, opts) {
   const prisma = new PrismaClient(opts.dbConfig);
 
   await prisma.$connect();
@@ -11,8 +11,8 @@ export default fp(async (app, opts) => {
   app.decorate('db', prisma);
 
   // eslint-disable-next-line no-shadow
-  app.addHook('onClose', async function closeDbConnection(app, _opts) {
+  app.addHook('onClose', async (app) => {
     await app.db.$disconnect();
     app.log.info('Database connection closed!');
   });
-}, { name: 'prisma' });
+}, { name: 'prisma', dependencies: ['fastify-overview'] });
