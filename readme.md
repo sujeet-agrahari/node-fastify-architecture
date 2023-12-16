@@ -211,13 +211,12 @@ We can make it even shorter using an arrow function,
 app.get('/hello', (request, reply) => reply.send('world'));
 ```
 
-🛑 Stop!
-
+> [!IMPORTANT]
 > Using an arrow function will prevent you from getting the function context. Without the context, you don’t have the possibility to use the this keyword to access the application instance. The arrow function syntax may not be a good choice because it can cause you to lose a great non-functional feature:the **_source code organization_**!
 
-🎩 **Context Tip: Use named function and avoid using arrow functions!**
-
-_It would be best to choose named functions._ In fact, avoiding arrow function handlers will help you debug your application and split the code into smaller files without carrying boring stuff, such as the application instance and logging objects. This will let you write shorter code and make it faster to implement new endpoints. The context binding doesn’t work exclusively on handlers but also works on every Fastify input function and hook, for example!
+> [!TIP]
+> **Context Tip: Use named function and avoid using arrow functions!** 
+> It would be best to choose named functions._ In fact, avoiding arrow function handlers will help you debug your application and split the code into smaller files without carrying boring stuff, such as the application instance and logging objects. This will let you write shorter code and make it faster to implement new endpoints. The context binding doesn’t work exclusively on handlers but also works on every Fastify input function and hook, for example!
 
 **_This is the reason the repository is structured to use named function and avoids the arrow function usage._**
 
@@ -323,7 +322,8 @@ app.register(
 );
 ```
 
-🛑 **_Stop here! First of all go through [this](https://www.nearform.com/blog/complete-guide-fastify-plugin-system/) article to understand plugin and their contexts_**
+> [!IMPORTANT]
+> First of all go through [this](https://www.nearform.com/blog/complete-guide-fastify-plugin-system/) article to understand plugin and their contexts
 
 These simple lines have just created an encapsulated context: this means that every event, hook, plugin, and decorator registered in the myPlugin scope function will remain inside that context and all its children. Optionally, you can provide an input object as a second parameter to the register function. This will propagate the input to the plugin’s opts parameter. If you move the plugin to another file, this will become extremely useful when sharing a configuration through files.
 
@@ -376,11 +376,12 @@ _The context of child when wrapped with `fp` gets merged into the parent._
 
 # Questions
 
-*Feel free to add yours!*
+_Feel free to add yours!_
 
 - When to prefer `fastify.decorateRequest()` over `fastify.decorate()`? https://github.com/fastify/help/issues/918
 - Should we install the dependencies which fastify already has like pino, ajv If we want to customize default behaviour? https://github.com/fastify/help/issues/917
-- Clarification on the Impact of Awaiting a Plugin/Decorator https://github.com/fastify/help/issues/919  
+- Clarification on the Impact of Awaiting a Plugin/Decorator https://github.com/fastify/help/issues/919
+
 # Learning Materials
 
 https://www.youtube.com/watch?v=gltzZjKYK1I
