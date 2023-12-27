@@ -1,0 +1,13 @@
+HOST = "127.0.0.1"
+PORT = 3000
+NODE_ENV = "development"
+
+[JWT_SIGN_OPTIONS]
+  issuer = "My Compny Pvt Ltd"
+  audience = "https://example.in"
+  expiresIn = "15d"
+
+API_PREFIX = "api/v1"
+
+[DB_CONFIG]
+
