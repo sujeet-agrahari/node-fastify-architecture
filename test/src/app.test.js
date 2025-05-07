@@ -43,9 +43,9 @@ describe('buildApp', async () => {
     });
 
     // Assert
-    pluginNamesWithoutExtension.forEach((pluginName) => {
+    for (const pluginName of pluginNamesWithoutExtension) {
       assert.strictEqual(app.hasPlugin(pluginName), true);
-    });
+    }
   });
 
   test('built app uses passed notFoundHandler', async () => {

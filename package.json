@@ -2,13 +2,13 @@
   "name": "node-fastify-architecture",
   "version": "1.0.0",
   "engines": {
-    "node": "20.x"
+    "node": "22.x"
   },
   "description": "",
   "main": "./src/server.js",
   "type": "module",
   "scripts": {
-    "test": "NODE_ENV=test node --test  --require=dotenv/config test/",
+    "test": "NODE_ENV=test node --test  --require=dotenv/config ./test/*/**",
     "start": "NODE_ENV=development node --watch --require=dotenv/config  src/server.js",
     "start:prod": "NODE_ENV=production node --require=dotenv/config src/server.js"
   },
@@ -17,7 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "@fastify/autoload": "^5.7.1",
-    "@prisma/client": "^5.0.0",
+    "@prisma/client": "6",
     "bcrypt": "^5.1.0",
     "close-with-grace": "^1.2.0",
     "config": "^3.3.9",
@@ -31,9 +31,7 @@
     "toml": "^3.0.0"
   },
   "devDependencies": {
-    "eslint": "^8.46.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.28.0",
+    "@biomejs/biome": "1.9.4",
     "pino-pretty": "^10.2.0"
   }
 }

@@ -83,13 +83,14 @@ The decision to separate services from controllers is motivated by several facto
 
 ## Steps to Run
 
-1. install node v20 `nvm install v20.5.0`
-2. use node v20 `nvm use 20`
+1. install node v20 `nvm install v22.0`
+2. use node v20 `nvm use 22`
 3. install pnpm `npm i -g pnpm`
 4. install dependencies `pnpm install`
 5. setup Prism `pnpm dlx prisma generate`
 6. run the app `pnpm start`; _it will run the app in development_
 7. run the unit tests `pnpm test` _it uses node.js v20 native test runner_
+8. run the lint `pnpm biome check` and `pnpm biome lint` _it uses biome for linting and formatting_
 
 The application contains below routes:
 
