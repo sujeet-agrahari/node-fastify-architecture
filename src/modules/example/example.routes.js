@@ -1,7 +1,7 @@
-export default async function HealthRoutes(healthModule) {
-  healthModule.route({
+export default async function ExampleRoutes(exampleModule) {
+  exampleModule.route({
     method: 'GET',
     url: '/',
-    handler: healthModule.exampleController.getExample,
+    handler: exampleModule.exampleController.getExample,
   });
 }

@@ -4,7 +4,7 @@ export default async function HealthRoutes(healthModule) {
     url: '/health',
     schema: {
       response: {
-        200: healthModule.getSchema('schema:auth:heathRes'),
+        200: healthModule.getSchema('schema:health:healthRes'),
       },
     },
     handler: healthModule.healthController.getHealthStatus,

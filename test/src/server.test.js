@@ -1,4 +1,4 @@
-import { describe, test } from 'node:test';
+import { describe, test, beforeEach, afterEach } from 'node:test';
 import assert from 'node:assert';
 import config from 'config';
 import buildApp from '../../src/app.js';
@@ -8,7 +8,7 @@ describe('server', async () => {
   const serverOptions = {
     fastifyOptions: {
       logger: {
-        level: 'info',
+        level: 'silent', // Silence logs during tests
       },
       genReqId: () => crypto.randomUUID(),
     },
@@ -17,10 +17,19 @@ describe('server', async () => {
     dbConfig: config.get('DB_CONFIG'),
   };
 
-  test('server boots up and accepts request', async () => {
-    // Arrange
-    const app = await buildApp(serverOptions);
+  let app;
 
+  beforeEach(async () => {
+    app = await buildApp(serverOptions);
+  });
+
+  afterEach(async () => {
+    if (app) {
+      await app.close();
+    }
+  });
+
+  test('server boots up and accepts request', async () => {
     // Act
     const healthResponse = await app.inject({
       method: 'GET',

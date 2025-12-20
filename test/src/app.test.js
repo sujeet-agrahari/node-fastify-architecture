@@ -1,4 +1,4 @@
-import { describe, test, mock } from 'node:test';
+import { describe, test, mock, beforeEach, afterEach } from 'node:test';
 import assert from 'node:assert';
 import { readdir } from 'node:fs/promises';
 import path from 'node:path';
@@ -13,7 +13,7 @@ describe('buildApp', async () => {
   const serverOptions = {
     fastifyOptions: {
       logger: {
-        level: 'info',
+        level: 'silent', // Silence logs during tests
       },
       genReqId: () => crypto.randomUUID(),
     },
@@ -22,10 +22,20 @@ describe('buildApp', async () => {
     dbConfig: config.get('DB_CONFIG'),
   };
 
-  test('built app has all the passed decorators', async () => {
-    // Arrange & Act
-    const app = await buildApp(serverOptions);
+  let app;
 
+  beforeEach(async () => {
+    app = await buildApp(serverOptions);
+  });
+
+  afterEach(async () => {
+    if (app) {
+      await app.close();
+    }
+    mock.reset();
+  });
+
+  test('built app has all the passed decorators', async () => {
     // Assert
     assert.strictEqual(app.hasDecorator('config'), true);
     assert.strictEqual(app.hasDecorator('HttpError'), true);
@@ -33,9 +43,7 @@ describe('buildApp', async () => {
   });
 
   test('built app has all the plugins', async () => {
-    // Arrange & Act
-    const app = await buildApp(serverOptions);
-
+    // Arrange
     const plugins = await readdir(pluginDir);
     const pluginNamesWithoutExtension = plugins.map((file) => {
       const parsedPath = path.parse(file);
@@ -49,9 +57,6 @@ describe('buildApp', async () => {
   });
 
   test('built app uses passed notFoundHandler', async () => {
-    // Arrange
-    const app = await buildApp(serverOptions);
-
     // Act
     const notFoundErrorRes = await app.inject({
       method: 'GET',
@@ -73,7 +78,6 @@ describe('buildApp', async () => {
 
   test('built app uses passed errorHandler', async () => {
     // Arrange
-    const app = await buildApp(serverOptions);
     const errorMsg = 'Something bad happened!';
     mock.method(HealthService, 'getHealthStatus')
       .mock.mockImplementationOnce(

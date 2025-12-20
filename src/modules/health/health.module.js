@@ -3,9 +3,6 @@ import HealthRoutes from './health.routes.js';
 import HealthSchema from './health.schema.js';
 import HealthService from './health.service.js';
 
-// override api prefix
-const prefixOverride = '';
-
 export default async function HealthModule(app) {
   app.decorate('healthController', HealthController);
   app.decorate('healthService', HealthService);
@@ -15,4 +12,4 @@ export default async function HealthModule(app) {
 }
 
 // export services used by other modules
-export { HealthService, prefixOverride };
+export { HealthService };

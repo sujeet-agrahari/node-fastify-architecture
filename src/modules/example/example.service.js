@@ -1,4 +1,4 @@
-const HealthService = {
+const ExampleService = {
   async getExample(context, requestQuery) {
     return {
       message: 'Example',
@@ -7,4 +7,4 @@ const HealthService = {
   },
 };
 
-export default HealthService;
+export default ExampleService;

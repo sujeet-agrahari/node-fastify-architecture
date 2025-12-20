@@ -4,9 +4,9 @@ A boilerplate/starter project for quickly building RESTful APIs using Node.js, F
 
 This repository contains a Node.js Fastify application that follows a modular architecture. Each business entity is wrapped inside a single module, including routes, controllers, services, and other related components.
 
-> ⚡️ The project is setup to work with node v20, which is gonna be next LTS from 24th October 2023.
-> Node v20 includes native test runner. The project is setup to use the same and doesn't depend on external libraries like jest, mocha, ava etc. for tests.
-> Node v20 also allows to use `await` outside `async` and the project also uses this feature
+> ⚡️ The project is setup to work with Node.js v22.x (LTS).
+> Node.js v22 includes native test runner. The project is setup to use the same and doesn't depend on external libraries like jest, mocha, ava etc. for tests.
+> Node.js v22 also allows to use `await` outside `async` and the project also uses this feature
 
 ## The project
 
@@ -47,9 +47,7 @@ root
 
   `app.js:` This file registers all the plugins, decorators, and modules for the Fastify app.
 
-  `plugins/:` This directory contains Fastify plugins used in the application.
-
-  `middlewares/:` This directory contains middleware files used for request processing.
+  `plugins/:` This directory contains Fastify plugins used in the application (cors, helmet, rate-limit, prisma, error-handler, etc.).
 
   `utils/:` This directory contains utility files with common functions or helpers.
 
@@ -83,8 +81,8 @@ The decision to separate services from controllers is motivated by several facto
 
 ## Steps to Run
 
-1. install node v20 `nvm install v22.0`
-2. use node v20 `nvm use 22`
+1. install Node.js v22 `nvm install 22`
+2. use Node.js v22 `nvm use 22`
 3. install pnpm `npm i -g pnpm`
 4. install dependencies `pnpm install`
 5. setup Prism `pnpm dlx prisma generate`

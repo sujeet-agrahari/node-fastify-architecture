@@ -1,7 +1,7 @@
 import fp from 'fastify-plugin';
 
 const healthResSchema = {
-  $id: 'schema:auth:heathRes',
+  $id: 'schema:health:healthRes',
   type: 'object',
   required: ['app', 'database'],
   additionalProperties: false,
